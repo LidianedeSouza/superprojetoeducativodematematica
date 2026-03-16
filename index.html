@@ -212,6 +212,152 @@
             font-size: 1.8rem;
         }
 
+        /* NOVAS SEÇÕES: VIDEOAULAS, EXERCÍCIOS RESOLVIDOS E IA */
+        .recursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .recurso-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 2px solid #ffb381;
+            box-shadow: 0 15px 25px rgba(0, 40, 80, 0.2);
+            transition: 0.3s;
+        }
+
+        .recurso-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(255, 180, 130, 0.3);
+        }
+
+        .recurso-card h3 {
+            font-size: 1.8rem;
+            color: #024d8a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px dotted #ffb381;
+            padding-bottom: 0.5rem;
+        }
+
+        .recurso-card p {
+            color: #024175;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .video-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: #ecf5ff;
+            padding: 0.8rem 1.2rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .video-item:hover {
+            background: #ffb381;
+            color: #001e39;
+        }
+
+        .video-item span {
+            font-size: 2rem;
+        }
+
+        .exercicio-resolvido {
+            background: #ecf5ff;
+            padding: 1rem 1.5rem;
+            border-radius: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 8px solid #ffb381;
+        }
+
+        .exercicio-resolvido p {
+            margin-bottom: 0.5rem;
+        }
+
+        .exercicio-resolvido .resolucao {
+            background: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            font-family: monospace;
+            font-size: 1rem;
+            color: #022a47;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .exercicio-resolvido button {
+            background: #023b68;
+            color: white;
+            border: none;
+            padding: 0.4rem 1.2rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .ia-container {
+            background: #ecf5ff;
+            border-radius: 2rem;
+            padding: 1.5rem;
+        }
+
+        .ia-input {
+            display: flex;
+            gap: 0.8rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .ia-input input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border-radius: 2rem;
+            border: 2px solid #95bde5;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .ia-input input:focus {
+            border-color: #ffb381;
+        }
+
+        .ia-input button {
+            background: #ffb381;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            font-weight: 700;
+            color: #002b50;
+            cursor: pointer;
+        }
+
+        .ia-resposta {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 1.5rem;
+            font-size: 1rem;
+            color: #022a47;
+            min-height: 80px;
+            border: 2px dashed #ffb381;
+        }
+
         /* CALCULADORA */
         .calc-container {
             background: #bed9f2;
@@ -523,7 +669,7 @@
 
 <main class="container">
     <h1 class="page-title">🧮 regra de três · direta & inversa</h1>
-    <div class="sub">→ resolva com confiança • treino + calculadora</div>
+    <div class="sub">→ resolva com confiança • treino + calculadora • videoaulas • IA</div>
 
     <!-- cards conceito direta/inversa -->
     <div class="grid-2">
@@ -550,6 +696,92 @@
             <li><strong>Treine com situações</strong> do dia a dia: receitas, velocidades, escalas.</li>
             <li><strong>Use a calculadora</strong> abaixo para verificar seus cálculos mentais!</li>
         </ul>
+    </div>
+
+    <!-- NOVAS SEÇÕES: VIDEOAULAS, EXERCÍCIOS RESOLVIDOS E IA -->
+    <div class="recursos-grid">
+        <!-- Videoaulas Curtas e Objetivas -->
+        <div class="recurso-card">
+            <h3>🎥 Videoaulas Curtas</h3>
+            <p>Explicações diretas e conceituais para facilitar sua compreensão.</p>
+            <div class="video-lista">
+                <div class="video-item" onclick="alert('🎬 Videoaula: Introdução à Regra de Três\n\nA regra de três é um método para resolver problemas envolvendo proporções. Assista à aula completa no nosso canal!')">
+                    <span>📺</span>
+                    <strong>1. Introdução à Regra de Três</strong>
+                </div>
+                <div class="video-item" onclick="alert('🎬 Videoaula: Regra de Três Direta\n\nNa regra direta, as grandezas são diretamente proporcionais. Exemplo: Se 3 cadernos custam R$45, 6 cadernos custam R$90.')">
+                    <span>📺</span>
+                    <strong>2. Regra de Três Direta (passo a passo)</strong>
+                </div>
+                <div class="video-item" onclick="alert('🎬 Videoaula: Regra de Três Inversa\n\nNa regra inversa, as grandezas são inversamente proporcionais. Exemplo: Se 5 pedreiros fazem em 10 dias, 10 pedreiros fazem em 5 dias.')">
+                    <span>📺</span>
+                    <strong>3. Regra de Três Inversa (exemplos)</strong>
+                </div>
+                <div class="video-item" onclick="alert('🎬 Videoaula: Como Identificar Direta x Inversa\n\nDica: Pergunte-se: se uma grandeza aumenta, a outra aumenta (direta) ou diminui (inversa)?')">
+                    <span>📺</span>
+                    <strong>4. Direta vs Inversa (como diferenciar)</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercícios Resolvidos Passo a Passo -->
+        <div class="recurso-card">
+            <h3>📝 Exercícios Resolvidos</h3>
+            <p>Aprenda com a resolução detalhada de problemas.</p>
+            
+            <div class="exercicio-resolvido">
+                <p><strong>✏️ Exercício 1 (Direta):</strong> 5m de tecido custam R$80. Quanto custam 12m?</p>
+                <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Ver resolução</button>
+                <div class="resolucao">
+                    <strong>Passo a passo:</strong><br>
+                    1. Identificamos que é direta (mais metros, mais custo)<br>
+                    2. Montamos a proporção: 5/12 = 80/x<br>
+                    3. Multiplicamos cruzado: 5·x = 12·80<br>
+                    4. 5x = 960<br>
+                    5. x = 960/5 = 192<br>
+                    ✅ Resposta: R$192,00
+                </div>
+            </div>
+
+            <div class="exercicio-resolvido">
+                <p><strong>✏️ Exercício 2 (Inversa):</strong> 8 operários constroem um muro em 15 dias. Quantos dias para 12 operários?</p>
+                <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Ver resolução</button>
+                <div class="resolucao">
+                    <strong>Passo a passo:</strong><br>
+                    1. Identificamos que é inversa (mais operários, menos dias)<br>
+                    2. Montamos a relação: 8·15 = 12·x<br>
+                    3. 120 = 12x<br>
+                    4. x = 120/12 = 10<br>
+                    ✅ Resposta: 10 dias
+                </div>
+            </div>
+
+            <div class="exercicio-resolvido">
+                <p><strong>✏️ Exercício 3 (Mista):</strong> 3 máquinas produzem 120 peças em 4h. Quantas peças 5 máquinas produzem em 6h?</p>
+                <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Ver resolução</button>
+                <div class="resolucao">
+                    <strong>Passo a passo:</strong><br>
+                    1. Primeiro, calculamos a produção por máquina/hora: 120/(3·4) = 10 peças por máquina/hora<br>
+                    2. Para 5 máquinas em 6h: 5·6·10 = 300<br>
+                    ✅ Resposta: 300 peças
+                </div>
+            </div>
+        </div>
+
+        <!-- Inteligência Artificial (IA) para Solução -->
+        <div class="recurso-card">
+            <h3>🤖 IA para Solução</h3>
+            <p>Descreva seu problema e a IA ajuda a resolver!</p>
+            <div class="ia-container">
+                <div class="ia-input">
+                    <input type="text" id="iaPergunta" placeholder="Ex: 8 pedreiros fazem em 12 dias, 6 pedreiros em quantos dias?">
+                    <button id="iaPerguntar">Perguntar</button>
+                </div>
+                <div class="ia-resposta" id="iaResposta">
+                    👋 Olá! Faça uma pergunta sobre regra de três que eu ajudo a resolver.
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- CALCULADORA INTERATIVA -->
@@ -753,10 +985,9 @@
             const solucaoBtn = item.querySelector('.solucao-btn');
             const feedback = item.querySelector('.feedback');
             const respostaCorreta = parseFloat(item.dataset.resposta);
-            const tipo = item.dataset.tipo; // 'direta' ou 'inversa'
+            const tipo = item.dataset.tipo;
             const dica = item.dataset.dica;
 
-            // Botão "ver dica" - libera a atividade
             praticarBtn.addEventListener('click', function() {
                 respostaContainer.style.display = 'flex';
                 praticarBtn.style.display = 'none';
@@ -764,7 +995,6 @@
                 respostaInput.value = '';
             });
 
-            // Botão verificar
             if (verificarBtn) {
                 verificarBtn.addEventListener('click', function() {
                     const valorUsuario = parseFloat(respostaInput.value);
@@ -785,7 +1015,6 @@
                 });
             }
 
-            // Botão solução - agora mostra explicação detalhada com dicas
             if (solucaoBtn) {
                 solucaoBtn.addEventListener('click', function() {
                     const valorUsuario = respostaInput.value ? parseFloat(respostaInput.value) : null;
@@ -794,20 +1023,17 @@
                     let mensagem = '';
                     let dicasExtras = '';
                     
-                    // Dicas específicas baseadas no tipo de problema
                     if (tipo === 'direta') {
                         dicasExtras = '\n\n📌 DICAS PARA REGRA DE TRÊS DIRETA:\n' +
                                     '• As grandezas aumentam ou diminuem juntas\n' +
                                     '• Monte a proporção: A/B = C/X\n' +
                                     '• Multiplique cruzado: A·X = B·C\n' +
-                                    '• Isole X: X = (B·C)/A\n' +
-                                    '• Exemplo: Se 3kg fazem 45 pães, então 5kg fazem 75 pães (3/5 = 45/75)';
+                                    '• Isole X: X = (B·C)/A';
                     } else {
                         dicasExtras = '\n\n📌 DICAS PARA REGRA DE TRÊS INVERSA:\n' +
                                     '• Quando uma grandeza aumenta, a outra diminui\n' +
                                     '• O produto é constante: A·B = C·X\n' +
-                                    '• Isole X: X = (A·B)/C\n' +
-                                    '• Exemplo: Se 6 máquinas levam 5h, 10 máquinas levam 3h (6·5 = 10·3)';
+                                    '• Isole X: X = (A·B)/C';
                     }
                     
                     if (errou) {
@@ -826,6 +1052,109 @@
                     modalTexto.textContent = mensagem;
                     modal.style.display = 'flex';
                 });
+            }
+        });
+
+        // ========== IA PARA SOLUÇÃO ==========
+        const iaPergunta = document.getElementById('iaPergunta');
+        const iaPerguntar = document.getElementById('iaPerguntar');
+        const iaResposta = document.getElementById('iaResposta');
+
+        function resolverComIA(pergunta) {
+            pergunta = pergunta.toLowerCase();
+            
+            // Detecção de padrões para regra de três
+            const diretaPattern = /(\d+)\s*(.+?)\s*(?:fazem|produzem|custam|têm|são|levam|gastam)?\s*(\d+)\s*(.+?)\s*(?:para|em|com)?\s*(\d+)\s*(.+?)\s*(?:quantos|quanto|em)?\s*(?:dias|horas|metros|kg|reais|peças)?/i;
+            
+            // Exemplos específicos para demonstração
+            if (pergunta.includes('pedreiro') && pergunta.includes('dias')) {
+                const match = pergunta.match(/(\d+)\s*pedreiros?\s*(?:fazem|constroem|trabalham)?\s*em\s*(\d+)\s*dias/i);
+                if (match) {
+                    const pedreiros1 = parseInt(match[1]);
+                    const dias1 = parseInt(match[2]);
+                    
+                    const match2 = pergunta.match(/(\d+)\s*pedreiros?\s*(?:em)?\s*(\d+)?/i);
+                    if (match2 && match2[1]) {
+                        const pedreiros2 = parseInt(match2[1]);
+                        const resultado = (pedreiros1 * dias1) / pedreiros2;
+                        return `🔍 Análise da IA:\n• Problema: ${pedreiros1} pedreiros em ${dias1} dias\n• Pergunta: ${pedreiros2} pedreiros em quantos dias?\n• Tipo: Inversa (mais pedreiros, menos dias)\n• Fórmula: ${pedreiros1} × ${dias1} = ${pedreiros2} × x\n• Cálculo: ${pedreiros1 * dias1} = ${pedreiros2}x\n• x = ${pedreiros1 * dias1} ÷ ${pedreiros2} = ${resultado}\n✅ Resposta: ${resultado} dias`;
+                    }
+                }
+            }
+            
+            if (pergunta.includes('maquina') || pergunta.includes('máquina')) {
+                if (pergunta.includes('pecas') || pergunta.includes('peças')) {
+                    const match = pergunta.match(/(\d+)\s*máquinas?\s*(?:produzem|fazem)?\s*(\d+)\s*peças?\s*em\s*(\d+)\s*horas?/i);
+                    if (match) {
+                        const maq1 = parseInt(match[1]);
+                        const pecas1 = parseInt(match[2]);
+                        const horas1 = parseInt(match[3]);
+                        
+                        const match2 = pergunta.match(/(\d+)\s*máquinas?\s*em\s*(\d+)\s*horas?/i);
+                        if (match2) {
+                            const maq2 = parseInt(match2[1]);
+                            const horas2 = parseInt(match2[2]);
+                            const producaoPorHora = pecas1 / (maq1 * horas1);
+                            const resultado = maq2 * horas2 * producaoPorHora;
+                            return `🔍 Análise da IA:\n• ${maq1} máquinas produzem ${pecas1} peças em ${horas1}h\n• Pergunta: ${maq2} máquinas em ${horas2}h produzem quantas peças?\n• Produção por máquina/hora: ${pecas1} ÷ (${maq1} × ${horas1}) = ${producaoPorHora.toFixed(2)} peças\n• Total: ${maq2} × ${horas2} × ${producaoPorHora.toFixed(2)} = ${resultado.toFixed(2)}\n✅ Resposta: ${resultado.toFixed(2)} peças`;
+                        }
+                    }
+                }
+            }
+            
+            if (pergunta.includes('tecido') || pergunta.includes('metro') || pergunta.includes('custo')) {
+                const match = pergunta.match(/(\d+)\s*metros?\s*(?:de tecido)?\s*custa?\s*(?:R?\$?)?\s*(\d+)/i);
+                if (match) {
+                    const metros1 = parseInt(match[1]);
+                    const custo1 = parseInt(match[2]);
+                    
+                    const match2 = pergunta.match(/(\d+)\s*metros?/i);
+                    if (match2 && match2[1] != metros1) {
+                        const metros2 = parseInt(match2[1]);
+                        const resultado = (metros2 * custo1) / metros1;
+                        return `🔍 Análise da IA:\n• ${metros1} metros custam R$${custo1}\n• Pergunta: ${metros2} metros custam quanto?\n• Tipo: Direta (mais metros, mais custo)\n• Fórmula: ${metros1}/${metros2} = ${custo1}/x\n• Cálculo: ${metros1}x = ${metros2} × ${custo1}\n• x = (${metros2} × ${custo1}) ÷ ${metros1} = ${resultado}\n✅ Resposta: R$${resultado}`;
+                    }
+                }
+            }
+            
+            if (pergunta.includes('velocidade') || pergunta.includes('km/h') || pergunta.includes('tempo')) {
+                const match = pergunta.match(/(\d+)\s*km\/h\s*(?:faz|percorre|leva)?\s*(\d+)\s*horas?/i);
+                if (match) {
+                    const vel1 = parseInt(match[1]);
+                    const tempo1 = parseInt(match[2]);
+                    
+                    const match2 = pergunta.match(/(\d+)\s*km\/h/i);
+                    if (match2 && match2[1] != vel1) {
+                        const vel2 = parseInt(match2[1]);
+                        const resultado = (vel1 * tempo1) / vel2;
+                        return `🔍 Análise da IA:\n• Velocidade ${vel1} km/h leva ${tempo1}h\n• Pergunta: Velocidade ${vel2} km/h leva quanto tempo?\n• Tipo: Inversa (mais velocidade, menos tempo)\n• Fórmula: ${vel1} × ${tempo1} = ${vel2} × x\n• Cálculo: ${vel1 * tempo1} = ${vel2}x\n• x = ${vel1 * tempo1} ÷ ${vel2} = ${resultado.toFixed(2)}\n✅ Resposta: ${resultado.toFixed(2)} horas (${Math.floor(resultado)}h${Math.round((resultado % 1) * 60)}min)`;
+                    }
+                }
+            }
+            
+            // Resposta padrão
+            return "🤔 Não entendi completamente seu problema. Por favor, seja mais específico.\n\nExemplos de perguntas que posso responder:\n• '8 pedreiros fazem em 12 dias, 6 pedreiros em quantos dias?'\n• '5 metros de tecido custam R$80, quanto custam 12 metros?'\n• '3 máquinas produzem 120 peças em 4h, quantas peças 5 máquinas em 6h?'\n• 'Velocidade 80 km/h leva 3h, quanto tempo a 100 km/h?'";
+        }
+
+        iaPerguntar.addEventListener('click', function() {
+            const pergunta = iaPergunta.value.trim();
+            if (pergunta === '') {
+                iaResposta.textContent = '❌ Digite uma pergunta primeiro!';
+                return;
+            }
+            
+            iaResposta.textContent = '⏳ Pensando...';
+            
+            // Simulação de processamento da IA
+            setTimeout(() => {
+                const resposta = resolverComIA(pergunta);
+                iaResposta.textContent = resposta;
+            }, 500);
+        });
+
+        iaPergunta.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                iaPerguntar.click();
             }
         });
 
