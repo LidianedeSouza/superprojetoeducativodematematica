@@ -502,7 +502,7 @@
 <header>
     <!-- barra de pesquisa canto superior esquerdo -->
     <div class="search-area">
-        <input type="text" id="pesquisaInput" placeholder="ex: direta, inversa, dicas...">
+        <input type="text" id="pesquisaInput" placeholder="Faça uma pergunta sobre regra de três...">
         <button aria-label="Buscar" id="pesquisaBtn">
             <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         </button>
@@ -848,31 +848,62 @@
             }
         });
 
-        // ========== BARRA DE PESQUISA ==========
+        // ========== BARRA DE PESQUISA INTELIGENTE ==========
         const searchBtn = document.getElementById('pesquisaBtn');
         const searchInput = document.getElementById('pesquisaInput');
         
-        searchBtn.addEventListener('click', function() {
-            const termo = searchInput.value.trim().toLowerCase();
+        function responderPergunta(pergunta) {
+            pergunta = pergunta.toLowerCase();
             
-            if (termo === '') {
-                alert('Digite algo para pesquisar.');
+            // Mapeamento de palavras-chave para seções
+            if (pergunta.includes('direta') || pergunta.includes('diretamente') || pergunta.includes('diretas')) {
+                return menuItens['direta'];
+            }
+            else if (pergunta.includes('inversa') || pergunta.includes('inversamente') || pergunta.includes('inversas')) {
+                return menuItens['inversa'];
+            }
+            else if (pergunta.includes('dica') || pergunta.includes('dicas') || pergunta.includes('melhorar') || pergunta.includes('aprender') || pergunta.includes('estudar')) {
+                return menuItens['dicas'];
+            }
+            else if (pergunta.includes('calculadora') || pergunta.includes('calcular') || pergunta.includes('calcule') || pergunta.includes('conta')) {
+                return menuItens['calc'];
+            }
+            else if (pergunta.includes('atividade') || pergunta.includes('atividades') || pergunta.includes('praticar') || pergunta.includes('exercício') || pergunta.includes('treinar')) {
+                return menuItens['atividades'];
+            }
+            else if (pergunta.includes('contato') || pergunta.includes('email') || pergunta.includes('telefone') || pergunta.includes('falar') || pergunta.includes('ajuda')) {
+                return menuItens['contato'];
+            }
+            else if (pergunta.includes('inicio') || pergunta.includes('início') || pergunta.includes('home') || pergunta.includes('principal')) {
+                return menuItens['inicio'];
+            }
+            else if (pergunta.includes('como fazer') || pergunta.includes('como calcular') || pergunta.includes('exemplo')) {
+                // Se perguntar como fazer, mostra dicas
+                return menuItens['dicas'];
+            }
+            
+            return null; // Não encontrou
+        }
+
+        searchBtn.addEventListener('click', function() {
+            const pergunta = searchInput.value.trim();
+            
+            if (pergunta === '') {
+                alert('Digite uma pergunta sobre regra de três.');
                 return;
             }
 
-            let encontrou = false;
-            for (const [key, value] of Object.entries(menuItens)) {
-                if (key.includes(termo) || value.titulo.toLowerCase().includes(termo) || value.texto.toLowerCase().includes(termo)) {
-                    modalTitulo.textContent = value.titulo;
-                    modalTexto.textContent = value.texto;
-                    modal.style.display = 'flex';
-                    encontrou = true;
-                    break;
-                }
-            }
-
-            if (!encontrou) {
-                alert(`Nenhum resultado encontrado para "${termo}". Tente: direta, inversa, dicas, calc, atividades, contato`);
+            const resposta = responderPergunta(pergunta);
+            
+            if (resposta) {
+                modalTitulo.textContent = resposta.titulo;
+                modalTexto.textContent = resposta.texto;
+                modal.style.display = 'flex';
+            } else {
+                // Se não encontrar uma correspondência exata, mostra uma mensagem amigável
+                modalTitulo.textContent = '🤔 Dúvida sobre regra de três';
+                modalTexto.textContent = `Sua pergunta: "${pergunta}"\n\nNão encontrei uma resposta específica, mas aqui vai uma dica geral: Na regra de três, primeiro identifique se as grandezas são direta ou inversamente proporcionais. Depois, organize os dados e aplique a fórmula correta. Use as seções do menu para aprender mais!`;
+                modal.style.display = 'flex';
             }
         });
 
