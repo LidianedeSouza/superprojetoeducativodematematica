@@ -26,10 +26,10 @@
             align-items: center;
             justify-content: space-between;
             padding: 1rem 2.5rem;
-            background: rgba(167, 199, 231, 0.8);   /* azul bebê suave */
+            background: rgba(167, 199, 231, 0.8);
             backdrop-filter: blur(10px);
             box-shadow: 0 6px 18px rgba(120, 150, 200, 0.3);
-            border-bottom: 3px solid #ffb381;      /* laranja clarinho */
+            border-bottom: 3px solid #ffb381;
             flex-wrap: wrap;
             gap: 1.2rem;
         }
@@ -38,7 +38,7 @@
         .search-area {
             display: flex;
             align-items: center;
-            background: #f0f8ff;        /* azul quase branco */
+            background: #f0f8ff;
             border-radius: 60px;
             padding: 0.2rem 0.2rem 0.2rem 1.4rem;
             box-shadow: 0 3px 10px rgba(80, 120, 170, 0.2), inset 0 1px 3px #bdd3f0;
@@ -61,7 +61,7 @@
             opacity: 0.7;
         }
         .search-area button {
-            background: #ffb381;        /* laranja bebê combina */
+            background: #ffb381;
             border: none;
             border-radius: 50px;
             width: 46px;
@@ -94,7 +94,7 @@
             flex-wrap: wrap;
         }
         .menu a {
-            color: #025091;              /* azul mais forte */
+            color: #025091;
             text-decoration: none;
             font-weight: 600;
             padding: 0.55rem 1.3rem;
@@ -103,6 +103,7 @@
             transition: 0.15s;
             font-size: 0.98rem;
             background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
         }
         .menu a:hover {
             background: #ffb381;
@@ -173,9 +174,9 @@
             color: #113a57;
         }
 
-        /* bloco de dicas (azul bebê mais escuro, mas na vibe) */
+        /* bloco de dicas */
         .dica-bloco {
-            background: #bbd6f5;          /* azul bebê médio */
+            background: #bbd6f5;
             border-radius: 3rem 1rem 3rem 1rem;
             padding: 2.2rem 2.5rem;
             margin: 2.8rem 0;
@@ -211,9 +212,9 @@
             font-size: 1.8rem;
         }
 
-        /* CALCULADORA LINDA */
+        /* CALCULADORA */
         .calc-container {
-            background: #bed9f2;   /* tom bebê */
+            background: #bed9f2;
             border-radius: 3rem;
             padding: 2.4rem 2.8rem;
             margin: 2.5rem 0 3rem;
@@ -311,7 +312,7 @@
             font-size: 2.1rem;
         }
 
-        /* atividades */
+        /* atividades - ESTILO REFEITO */
         .atividades-section {
             background: #ddeeff;
             border-radius: 3rem;
@@ -341,6 +342,7 @@
             align-items: center;
             gap: 1.5rem;
             box-shadow: 0 4px 10px #b7cde3;
+            flex-wrap: wrap;
         }
         .ex-item span {
             background: #ecf3ff;
@@ -349,8 +351,11 @@
             font-family: monospace;
             font-size: 1.5rem;
         }
+        .ex-item .conteudo-atividade {
+            flex: 1;
+            min-width: 250px;
+        }
         .ex-item button {
-            margin-left: auto;
             background: #023b68;
             color: white;
             border: none;
@@ -366,10 +371,96 @@
             background: #ffb381;
             color: #001e39;
         }
+        .resposta-container {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+        .resposta-input {
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            border: 2px solid #95bde5;
+            font-size: 1.1rem;
+            width: 120px;
+            text-align: center;
+            outline: none;
+        }
+        .resposta-input:focus {
+            border-color: #ffb381;
+        }
+        .verificar-btn, .solucao-btn {
+            background: #023b68;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .verificar-btn:hover {
+            background: #2ecc71;
+        }
+        .solucao-btn:hover {
+            background: #f39c12;
+        }
+        .feedback {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        .feedback.certo { color: #27ae60; }
+        .feedback.errado { color: #e74c3c; }
 
-        /* RODAPÉ com informações de contato (azul bebê total) */
+        /* MODAL para informações do menu */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #f0f8ff;
+            padding: 2.5rem;
+            border-radius: 3rem;
+            max-width: 500px;
+            width: 90%;
+            border: 4px solid #ffb381;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+        }
+        .modal-content h2 {
+            color: #024d8a;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        .modal-content p {
+            color: #022b4a;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .fechar-modal {
+            background: #ffb381;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: #001e36;
+        }
+
+        /* RODAPÉ */
         footer {
-            background: #9fc5eb;        /* azul bebê gostoso */
+            background: #9fc5eb;
             padding: 2rem 3rem;
             margin-top: 2.5rem;
             border-top: 4px solid #ffb381;
@@ -411,21 +502,21 @@
 <header>
     <!-- barra de pesquisa canto superior esquerdo -->
     <div class="search-area">
-        <input type="text" placeholder="ex: direta, inversa, dicas...">
-        <button aria-label="Buscar">
+        <input type="text" id="pesquisaInput" placeholder="ex: direta, inversa, dicas...">
+        <button aria-label="Buscar" id="pesquisaBtn">
             <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         </button>
     </div>
 
     <!-- menu superior direito -->
-    <nav class="menu">
-        <a href="#">Início</a>
-        <a href="#">Direta</a>
-        <a href="#">Inversa</a>
-        <a href="#">Dicas</a>
-        <a href="#">Calc</a>
-        <a href="#">Atividades</a>
-        <a href="#">Contato</a>
+    <nav class="menu" id="menuNav">
+        <a data-menu="inicio">Início</a>
+        <a data-menu="direta">Direta</a>
+        <a data-menu="inversa">Inversa</a>
+        <a data-menu="dicas">Dicas</a>
+        <a data-menu="calc">Calc</a>
+        <a data-menu="atividades">Atividades</a>
+        <a data-menu="contato">Contato</a>
     </nav>
 </header>
 
@@ -447,7 +538,7 @@
         </div>
     </div>
 
-    <!-- DICAS DE OURO (azul bebê) -->
+    <!-- DICAS DE OURO -->
     <div class="dica-bloco">
         <h3>📘 Dicas para detonar na regra de três</h3>
         <ul>
@@ -460,7 +551,7 @@
         </ul>
     </div>
 
-    <!-- CALCULADORA INTERATIVA (regra de três simples) -->
+    <!-- CALCULADORA INTERATIVA -->
     <div class="calc-container">
         <h3>🔢 Calculadora de regra de três</h3>
         <div class="calc-flex">
@@ -494,31 +585,63 @@
         <p style="margin-top:1rem; color:#00345e;">* use pontos para decimais. Na direta: A/B = C/X . Na inversa: A·B = C·X</p>
     </div>
 
-    <!-- ATIVIDADES PRÁTICAS -->
+    <!-- ATIVIDADES PRÁTICAS INTERATIVAS -->
     <div class="atividades-section">
         <h2>📌 Atividades para praticar</h2>
-        <div class="lista-ex">
-            <div class="ex-item">
-                <span>📏</span> Se 3 kg de farinha fazem 45 pães, quantos kg para 75 pães?
-                <button class="praticar-btn" data-dica="direta: 3/45 = x/75 → x = (75*3)/45 = 5 kg">ver dica</button>
+        <div class="lista-ex" id="listaAtividades">
+            <!-- Atividade 1 -->
+            <div class="ex-item" data-resposta="5" data-dica="direta: 3/45 = x/75 → x = (75*3)/45 = 5 kg">
+                <span>📏</span>
+                <div class="conteudo-atividade">3 kg de farinha → 45 pães. Kg para 75 pães?</div>
+                <div class="resposta-container" style="display: none;">
+                    <input type="number" class="resposta-input" step="any" placeholder="sua resposta">
+                    <button class="verificar-btn">✓ verificar</button>
+                    <button class="solucao-btn">🔍 solução</button>
+                    <span class="feedback"></span>
+                </div>
+                <button class="praticar-btn">ver dica</button>
             </div>
-            <div class="ex-item">
-                <span>⏱️</span> 6 máquinas produzem 1000 peças em 5h. 10 máquinas em quantas horas?
-                <button class="praticar-btn" data-dica="inversa: 6*5 = 10*x → x = 30/10 = 3h">ver dica</button>
+            <!-- Atividade 2 -->
+            <div class="ex-item" data-resposta="3" data-dica="inversa: 6*5 = 10*x → x = 30/10 = 3h">
+                <span>⏱️</span>
+                <div class="conteudo-atividade">6 máquinas → 1000 peças em 5h. 10 máquinas em ?h</div>
+                <div class="resposta-container" style="display: none;">
+                    <input type="number" class="resposta-input" step="any" placeholder="sua resposta">
+                    <button class="verificar-btn">✓ verificar</button>
+                    <button class="solucao-btn">🔍 solução</button>
+                    <span class="feedback"></span>
+                </div>
+                <button class="praticar-btn">ver dica</button>
             </div>
-            <div class="ex-item">
-                <span>🚗</span> Um carro a 80 km/h faz um trajeto em 3h. Se aumentar para 100 km/h, quanto tempo?
-                <button class="praticar-btn" data-dica="inversa: 80*3 = 100*x → x = 240/100 = 2,4 h (2h24)">ver dica</button>
+            <!-- Atividade 3 -->
+            <div class="ex-item" data-resposta="2.4" data-dica="inversa: 80*3 = 100*x → x = 240/100 = 2,4 h (2h24)">
+                <span>🚗</span>
+                <div class="conteudo-atividade">80 km/h → 3h. 100 km/h → ?h</div>
+                <div class="resposta-container" style="display: none;">
+                    <input type="number" class="resposta-input" step="any" placeholder="sua resposta">
+                    <button class="verificar-btn">✓ verificar</button>
+                    <button class="solucao-btn">🔍 solução</button>
+                    <span class="feedback"></span>
+                </div>
+                <button class="praticar-btn">ver dica</button>
             </div>
-            <div class="ex-item">
-                <span>🍞</span> 4 padeiros fazem 120 pães em 2h. Quantos pães 7 padeiros fazem em 2h? (direta)
-                <button class="praticar-btn" data-dica="direta com padeiros: 4/7 = 120/x → x = (7*120)/4 = 210 pães">ver dica</button>
+            <!-- Atividade 4 -->
+            <div class="ex-item" data-resposta="210" data-dica="direta: 4/7 = 120/x → x = (7*120)/4 = 210 pães">
+                <span>🍞</span>
+                <div class="conteudo-atividade">4 padeiros → 120 pães (2h). 7 padeiros → ? pães</div>
+                <div class="resposta-container" style="display: none;">
+                    <input type="number" class="resposta-input" step="any" placeholder="sua resposta">
+                    <button class="verificar-btn">✓ verificar</button>
+                    <button class="solucao-btn">🔍 solução</button>
+                    <span class="feedback"></span>
+                </div>
+                <button class="praticar-btn">ver dica</button>
             </div>
         </div>
     </div>
 </main>
 
-<!-- RODAPÉ com informações de contato (azul bebê total) -->
+<!-- RODAPÉ -->
 <footer>
     <div>📐 Matemática azul bebê · regra de três direta e inversa</div>
     <div class="contatos">
@@ -530,50 +653,80 @@
     <div style="font-size:0.95rem; margin-top:1rem;">&copy; 2025 — sempre aprendendo proporções</div>
 </footer>
 
-<!-- javascript da calculadora e interação com dicas -->
+<!-- MODAL PARA INFORMAÇÕES DO MENU -->
+<div id="menuModal" class="modal">
+    <div class="modal-content">
+        <h2 id="modalTitulo">Título</h2>
+        <p id="modalTexto">Conteúdo informativo...</p>
+        <button class="fechar-modal" id="fecharModal">Fechar</button>
+    </div>
+</div>
+
 <script>
     (function() {
-        // elementos da calculadora
+        // ========== CALCULADORA FUNCIONAL ==========
         const A = document.getElementById('valA');
         const B = document.getElementById('valB');
         const C = document.getElementById('valC');
         const X = document.getElementById('valX');
         const output = document.getElementById('calcOutput');
 
-        function exibir(valor) {
+        function formatarNumero(valor) {
             if (typeof valor === 'number' && !isNaN(valor)) {
-                X.value = valor.toFixed(4).replace(/\.?0+$/, ''); // remove zeros desnecessários
-                output.textContent = X.value;
+                return valor.toFixed(4).replace(/\.?0+$/, '');
+            }
+            return 'erro';
+        }
+
+        function exibirResultado(valor) {
+            if (typeof valor === 'number' && !isNaN(valor)) {
+                const formatado = formatarNumero(valor);
+                X.value = formatado;
+                output.textContent = formatado;
             } else {
                 X.value = 'erro';
                 output.textContent = '???';
             }
         }
 
-        // direta: A/B = C/X  =>  X = (B * C) / A
+        // Direta: A/B = C/X  => X = (B * C) / A
         document.getElementById('calcularDireta').addEventListener('click', function() {
             const a = parseFloat(A.value);
             const b = parseFloat(B.value);
             const c = parseFloat(C.value);
-            if (isNaN(a) || isNaN(b) || isNaN(c) || a === 0) {
-                exibir(NaN);
+            
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                exibirResultado(NaN);
                 return;
             }
+            
+            if (a === 0) {
+                alert('Valor A não pode ser zero!');
+                return;
+            }
+            
             const x = (b * c) / a;
-            exibir(x);
+            exibirResultado(x);
         });
 
-        // inversa: A * B = C * X  =>  X = (A * B) / C
+        // Inversa: A * B = C * X  => X = (A * B) / C
         document.getElementById('calcularInversa').addEventListener('click', function() {
             const a = parseFloat(A.value);
             const b = parseFloat(B.value);
             const c = parseFloat(C.value);
-            if (isNaN(a) || isNaN(b) || isNaN(c) || c === 0) {
-                exibir(NaN);
+            
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                exibirResultado(NaN);
                 return;
             }
+            
+            if (c === 0) {
+                alert('Valor C não pode ser zero!');
+                return;
+            }
+            
             const x = (a * b) / c;
-            exibir(x);
+            exibirResultado(x);
         });
 
         document.getElementById('limparCalc').addEventListener('click', function() {
@@ -584,29 +737,109 @@
             output.textContent = '—';
         });
 
-        // Botões "ver dica" das atividades
-        const botoesDica = document.querySelectorAll('.praticar-btn');
-        botoesDica.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const dica = this.getAttribute('data-dica');
-                alert('💡 ' + dica);
+        // ========== ATIVIDADES INTERATIVAS ==========
+        const atividades = document.querySelectorAll('.ex-item');
+        
+        atividades.forEach(item => {
+            const praticarBtn = item.querySelector('.praticar-btn');
+            const respostaContainer = item.querySelector('.resposta-container');
+            const respostaInput = item.querySelector('.resposta-input');
+            const verificarBtn = item.querySelector('.verificar-btn');
+            const solucaoBtn = item.querySelector('.solucao-btn');
+            const feedback = item.querySelector('.feedback');
+            const respostaCorreta = parseFloat(item.dataset.resposta);
+            const dica = item.dataset.dica;
+
+            // Botão "ver dica" - libera a atividade
+            praticarBtn.addEventListener('click', function() {
+                respostaContainer.style.display = 'flex';
+                praticarBtn.style.display = 'none'; // Esconde o botão ver dica
+                feedback.textContent = '';
+                respostaInput.value = '';
+            });
+
+            // Botão verificar
+            if (verificarBtn) {
+                verificarBtn.addEventListener('click', function() {
+                    const valorUsuario = parseFloat(respostaInput.value);
+                    
+                    if (isNaN(valorUsuario)) {
+                        feedback.textContent = 'Digite um número';
+                        feedback.className = 'feedback errado';
+                        return;
+                    }
+
+                    // Tolerância para decimais
+                    if (Math.abs(valorUsuario - respostaCorreta) < 0.01) {
+                        feedback.textContent = '✓ Correto!';
+                        feedback.className = 'feedback certo';
+                    } else {
+                        feedback.textContent = '✗ Tente novamente';
+                        feedback.className = 'feedback errado';
+                    }
+                });
+            }
+
+            // Botão solução
+            if (solucaoBtn) {
+                solucaoBtn.addEventListener('click', function() {
+                    alert(`💡 Dica: ${dica}`);
+                });
+            }
+        });
+
+        // ========== MENU FUNCIONAL COM MODAL ==========
+        const modal = document.getElementById('menuModal');
+        const modalTitulo = document.getElementById('modalTitulo');
+        const modalTexto = document.getElementById('modalTexto');
+        const fecharModal = document.getElementById('fecharModal');
+
+        const menuItens = {
+            'inicio': {
+                titulo: '🏠 Página Inicial',
+                texto: 'Bem-vindo ao Matematicar! Este site foi criado para ajudar você a dominar a regra de três direta e inversa. Explore as seções, pratique com nossas atividades e use a calculadora para verificar seus resultados.'
+            },
+            'direta': {
+                titulo: '⬆️ Regra de Três Direta',
+                texto: 'Na regra de três direta, as grandezas são diretamente proporcionais. Isso significa que quando uma aumenta, a outra aumenta na mesma proporção. Exemplo: Se 3 cadernos custam R$ 45, então 6 cadernos custarão R$ 90.'
+            },
+            'inversa': {
+                titulo: '⬇️ Regra de Três Inversa',
+                texto: 'Na regra de três inversa, as grandezas são inversamente proporcionais. Quando uma aumenta, a outra diminui na mesma proporção. Exemplo: Se 5 pedreiros constroem um muro em 10 dias, 10 pedreiros construirão em 5 dias.'
+            },
+            'dicas': {
+                titulo: '💡 Dicas de Estudo',
+                texto: '1. Sempre identifique se as grandezas são direta ou inversamente proporcionais. 2. Organize os dados em uma tabela. 3. Na direta, multiplique cruzado. 4. Na inversa, multiplique lado a lado. 5. Pratique com situações do dia a dia!'
+            },
+            'calc': {
+                titulo: '🧮 Calculadora',
+                texto: 'Use nossa calculadora para resolver problemas de regra de três. Basta preencher os valores A, B e C e escolher se o problema é direta ou inversa. A calculadora fará o cálculo correto instantaneamente!'
+            },
+            'atividades': {
+                titulo: '📝 Atividades Práticas',
+                texto: 'Clique em "ver dica" em qualquer atividade para liberar o campo de resposta. Depois, digite sua resposta e clique em "verificar" para saber se acertou. Use o botão "solução" para ver a resolução completa.'
+            },
+            'contato': {
+                titulo: '📞 Contato',
+                texto: 'Tem dúvidas, sugestões ou quer saber mais? Entre em contato conosco! Email: matematicar@ajuda.com | Telefone: (11) 99876-1234 | Instagram: @regra3.babyblue | Estamos em São Paulo, BR.'
+            }
+        };
+
+        document.querySelectorAll('.menu a').forEach(item => {
+            item.addEventListener('click', function() {
+                const menuId = this.dataset.menu;
+                const info = menuItens[menuId];
+                
+                if (info) {
+                    modalTitulo.textContent = info.titulo;
+                    modalTexto.textContent = info.texto;
+                    modal.style.display = 'flex';
+                }
             });
         });
 
-        // Barra de pesquisa - só um feedback amigável
-        const searchBtn = document.querySelector('.search-area button');
-        const searchInput = document.querySelector('.search-area input');
-        searchBtn.addEventListener('click', function() {
-            const termo = searchInput.value.trim();
-            if (termo !== '') {
-                alert('Você pesquisou por "' + termo + '"\n(Simulação de busca - site estático)');
-            } else {
-                alert('Digite algo para pesquisar.');
-            }
+        fecharModal.addEventListener('click', function() {
+            modal.style.display = 'none';
         });
-    })();
-</script>
 
-<!-- pequeno ajuste para input readonly não atrapalhar -->
-</body>
-</html>
+       
