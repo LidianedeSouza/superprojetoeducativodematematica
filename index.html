@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematicar · regra de três</title>
+    <style>
+        /* === PALETA AZUL BEBÊ + TOQUES LARANJA SUAVE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(155deg, #d9e9ff 0%, #c2dcff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ----- cabeçalho ----- */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2.5rem;
+            background: rgba(167, 199, 231, 0.8);   /* azul bebê suave */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 6px 18px rgba(120, 150, 200, 0.3);
+            border-bottom: 3px solid #ffb381;      /* laranja clarinho */
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+
+        /* barra de pesquisa esquerda */
+        .search-area {
+            display: flex;
+            align-items: center;
+            background: #f0f8ff;        /* azul quase branco */
+            border-radius: 60px;
+            padding: 0.2rem 0.2rem 0.2rem 1.4rem;
+            box-shadow: 0 3px 10px rgba(80, 120, 170, 0.2), inset 0 1px 3px #bdd3f0;
+            border: 1px solid #b0d0f0;
+            min-width: 250px;
+            flex: 1 1 280px;
+        }
+        .search-area input {
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 1rem;
+            padding: 0.6rem 0.2rem;
+            width: 100%;
+            color: #134b75;
+        }
+        .search-area input::placeholder {
+            color: #5880a5;
+            font-style: italic;
+            opacity: 0.7;
+        }
+        .search-area button {
+            background: #ffb381;        /* laranja bebê combina */
+            border: none;
+            border-radius: 50px;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 3px 8px #cc8f5a;
+        }
+        .search-area button:hover {
+            background: #ffa05c;
+            transform: scale(1.05);
+        }
+        .search-area button svg {
+            width: 22px;
+            fill: white;
+        }
+
+        /* menu direito */
+        .menu {
+            display: flex;
+            gap: 0.3rem;
+            background: rgba(255, 250, 240, 0.2);
+            padding: 0.3rem;
+            border-radius: 48px;
+            backdrop-filter: blur(2px);
+            border: 1px solid #fbc8a0;
+            flex-wrap: wrap;
+        }
+        .menu a {
+            color: #025091;              /* azul mais forte */
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.55rem 1.3rem;
+            border-radius: 40px;
+            letter-spacing: 0.2px;
+            transition: 0.15s;
+            font-size: 0.98rem;
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .menu a:hover {
+            background: #ffb381;
+            color: #022b4a;
+            box-shadow: 0 4px 12px #ffae6a;
+        }
+
+        /* ----- main container ----- */
+        .container {
+            max-width: 1300px;
+            margin: 2.2rem auto;
+            padding: 0 2.5rem;
+            flex: 1;
+        }
+
+        /* título */
+        .page-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #024d8a;
+            text-shadow: 2px 2px 0 #ffdbb5;
+            margin-bottom: 0.3rem;
+            border-left: 10px solid #ffb381;
+            padding-left: 1.5rem;
+        }
+
+        .sub {
+            color: #1d577b;
+            font-size: 1.2rem;
+            margin-left: 2rem;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        /* cards gêmeos */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.2rem;
+            margin: 2rem 0 2.8rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 2.5rem 1rem 2.5rem 1rem;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 20px 30px -10px #8eb2d9;
+            border: 1px solid #c5defa;
+            transition: 0.2s;
+        }
+        .card:hover {
+            border-color: #ffb381;
+            box-shadow: 0 30px 35px -12px #79b0e0;
+        }
+        .card h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 2rem;
+            color: #07559c;
+            border-bottom: 2px dotted #ffb381;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+        .card p {
+            font-size: 1.18rem;
+            color: #113a57;
+        }
+
+        /* bloco de dicas (azul bebê mais escuro, mas na vibe) */
+        .dica-bloco {
+            background: #bbd6f5;          /* azul bebê médio */
+            border-radius: 3rem 1rem 3rem 1rem;
+            padding: 2.2rem 2.5rem;
+            margin: 2.8rem 0;
+            border: 2px solid #ffb381;
+            box-shadow: 0 15px 25px #a2c2e0;
+        }
+        .dica-bloco h3 {
+            font-size: 2.2rem;
+            color: #022f50;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .dica-bloco ul {
+            margin-top: 1.8rem;
+            list-style: none;
+        }
+        .dica-bloco li {
+            margin: 1rem 0;
+            font-size: 1.25rem;
+            background: #ddeeff;
+            padding: 1rem 1.8rem;
+            border-radius: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #012b49;
+            font-weight: 500;
+            border-left: 12px solid #ffb381;
+        }
+        .dica-bloco li::before {
+            content: "💡";
+            font-size: 1.8rem;
+        }
+
+        /* CALCULADORA LINDA */
+        .calc-container {
+            background: #bed9f2;   /* tom bebê */
+            border-radius: 3rem;
+            padding: 2.4rem 2.8rem;
+            margin: 2.5rem 0 3rem;
+            box-shadow: 0 25px 30px -12px #709acf;
+            border: 2px solid #ffc38b;
+        }
+        .calc-container h3 {
+            font-size: 2.2rem;
+            color: #003e70;
+            display: flex;
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+        .calc-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            align-items: flex-end;
+        }
+        .campo {
+            flex: 1 1 150px;
+        }
+        .campo label {
+            display: block;
+            font-weight: 600;
+            color: #05416b;
+            margin-bottom: 6px;
+            font-size: 1.1rem;
+        }
+        .campo input {
+            width: 100%;
+            background: #ecf5ff;
+            border: 2px solid #95bde5;
+            padding: 0.9rem 1rem;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #022a47;
+            text-align: center;
+            outline: none;
+        }
+        .campo input:focus {
+            border-color: #ffb381;
+            background: #fff1e0;
+        }
+        .calc-acoes {
+            display: flex;
+            gap: 1.2rem;
+            margin: 2rem 0 1.5rem;
+            flex-wrap: wrap;
+        }
+        .calc-acoes button {
+            background: #ffb381;
+            border: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            padding: 0.9rem 2.4rem;
+            border-radius: 3rem;
+            color: #002b50;
+            box-shadow: 0 6px 0 #b56d38;
+            cursor: pointer;
+            transition: 0.15s;
+            flex: 1 0 180px;
+        }
+        .calc-acoes button.limpar {
+            background: #a6c1e3;
+            box-shadow: 0 6px 0 #5f7ea3;
+            color: #001e36;
+        }
+        .calc-acoes button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 0 #b56d38;
+        }
+        .calc-acoes button.limpar:hover {
+            background: #b8d2f2;
+            box-shadow: 0 9px 0 #5f7ea3;
+        }
+        .resultado-area {
+            background: #e7f1ff;
+            border-radius: 4rem;
+            padding: 1.8rem 2.5rem;
+            text-align: center;
+            font-size: 1.9rem;
+            color: #002c4f;
+            border: 3px solid #ffb381;
+            margin-top: 1.5rem;
+        }
+        #calcOutput {
+            font-weight: 800;
+            background: #022e51;
+            color: #ffdbb5;
+            padding: 0.4rem 2rem;
+            border-radius: 3rem;
+            margin-left: 15px;
+            font-size: 2.1rem;
+        }
+
+        /* atividades */
+        .atividades-section {
+            background: #ddeeff;
+            border-radius: 3rem;
+            padding: 2.5rem;
+            margin: 2.8rem 0;
+            border: 2px solid #fec28b;
+        }
+        .atividades-section h2 {
+            font-size: 2.2rem;
+            color: #004682;
+        }
+        .lista-ex {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+        .ex-item {
+            background: white;
+            padding: 1.3rem 2.2rem;
+            border-radius: 3rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #024175;
+            border-left: 16px solid #ffb381;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 4px 10px #b7cde3;
+        }
+        .ex-item span {
+            background: #ecf3ff;
+            padding: 0.2rem 1.2rem;
+            border-radius: 2rem;
+            font-family: monospace;
+            font-size: 1.5rem;
+        }
+        .ex-item button {
+            margin-left: auto;
+            background: #023b68;
+            color: white;
+            border: none;
+            padding: 0.6rem 2rem;
+            border-radius: 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #ffb381;
+        }
+        .ex-item button:hover {
+            background: #ffb381;
+            color: #001e39;
+        }
+
+        /* RODAPÉ com informações de contato (azul bebê total) */
+        footer {
+            background: #9fc5eb;        /* azul bebê gostoso */
+            padding: 2rem 3rem;
+            margin-top: 2.5rem;
+            border-top: 4px solid #ffb381;
+            text-align: center;
+            color: #022f55;
+            font-weight: 500;
+            font-size: 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .contatos {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 0.7rem;
+        }
+        .contatos a {
+            color: #022b4a;
+            text-decoration: none;
+            background: #ebf5ff;
+            padding: 0.4rem 1.8rem;
+            border-radius: 3rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #3d78b0;
+            font-weight: 600;
+        }
+        .contatos a:hover {
+            background: #ffb381;
+            border-color: #b55d1a;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- barra de pesquisa canto superior esquerdo -->
+    <div class="search-area">
+        <input type="text" placeholder="ex: direta, inversa, dicas...">
+        <button aria-label="Buscar">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </button>
+    </div>
+
+    <!-- menu superior direito -->
+    <nav class="menu">
+        <a href="#">Início</a>
+        <a href="#">Direta</a>
+        <a href="#">Inversa</a>
+        <a href="#">Dicas</a>
+        <a href="#">Calc</a>
+        <a href="#">Atividades</a>
+        <a href="#">Contato</a>
+    </nav>
+</header>
+
+<main class="container">
+    <h1 class="page-title">🧮 regra de três · direta & inversa</h1>
+    <div class="sub">→ resolva com confiança • treino + calculadora</div>
+
+    <!-- cards conceito direta/inversa -->
+    <div class="grid-2">
+        <div class="card">
+            <h2>⬆️ Direta</h2>
+            <p><strong>Grandezas que andam juntas:</strong> se uma dobra, a outra dobra.</p>
+            <p style="margin-top:1rem;">✏️ <em>exemplo:</em> 8m de tecido custam R$ 160. Quanto custam 13m? <br> 8/13 = 160/x  →  x = (13·160)/8 = R$ 260.</p>
+        </div>
+        <div class="card">
+            <h2>⬇️ Inversa</h2>
+            <p><strong>Uma aumenta, a outra diminui:</strong> velocidade e tempo, por exemplo.</p>
+            <p style="margin-top:1rem;">✏️ <em>exemplo:</em> 5 torneiras enchem um tanque em 9h. Se usarmos 3 torneiras, quantas horas? <br> 5·9 = 3·y → y = 45/3 = 15h.</p>
+        </div>
+    </div>
+
+    <!-- DICAS DE OURO (azul bebê) -->
+    <div class="dica-bloco">
+        <h3>📘 Dicas para detonar na regra de três</h3>
+        <ul>
+            <li><strong>Classifique</strong> as grandezas: se ambas sobem ou descem juntas = direta. Se uma sobe e outra desce = inversa.</li>
+            <li><strong>Monte a tabela:</strong> coloque os valores conhecidos e o x sempre na mesma coluna.</li>
+            <li><strong>Na direta:</strong> multiplique cruzado (a/b = c/x vira a·x = b·c).</li>
+            <li><strong>Na inversa:</strong> multiplique lado a lado (a·b = c·x).</li>
+            <li><strong>Treine com situações</strong> do dia a dia: receitas, velocidades, escalas.</li>
+            <li><strong>Use a calculadora</strong> abaixo para verificar seus cálculos mentais!</li>
+        </ul>
+    </div>
+
+    <!-- CALCULADORA INTERATIVA (regra de três simples) -->
+    <div class="calc-container">
+        <h3>🔢 Calculadora de regra de três</h3>
+        <div class="calc-flex">
+            <div class="campo">
+                <label>Valor A</label>
+                <input type="number" id="valA" value="8" step="any">
+            </div>
+            <div class="campo">
+                <label>Valor B</label>
+                <input type="number" id="valB" value="12" step="any">
+            </div>
+            <div class="campo">
+                <label>Valor C</label>
+                <input type="number" id="valC" value="6" step="any">
+            </div>
+            <div class="campo">
+                <label>X (resultado)</label>
+                <input type="text" id="valX" readonly placeholder="—">
+            </div>
+        </div>
+
+        <div class="calc-acoes">
+            <button id="calcularDireta">⬆️ Calcular direta</button>
+            <button id="calcularInversa">⬇️ Calcular inversa</button>
+            <button class="limpar" id="limparCalc">🧽 limpar</button>
+        </div>
+
+        <div class="resultado-area">
+            <span>resultado <strong>X</strong> = </span><span id="calcOutput">—</span>
+        </div>
+        <p style="margin-top:1rem; color:#00345e;">* use pontos para decimais. Na direta: A/B = C/X . Na inversa: A·B = C·X</p>
+    </div>
+
+    <!-- ATIVIDADES PRÁTICAS -->
+    <div class="atividades-section">
+        <h2>📌 Atividades para praticar</h2>
+        <div class="lista-ex">
+            <div class="ex-item">
+                <span>📏</span> Se 3 kg de farinha fazem 45 pães, quantos kg para 75 pães?
+                <button class="praticar-btn" data-dica="direta: 3/45 = x/75 → x = (75*3)/45 = 5 kg">ver dica</button>
+            </div>
+            <div class="ex-item">
+                <span>⏱️</span> 6 máquinas produzem 1000 peças em 5h. 10 máquinas em quantas horas?
+                <button class="praticar-btn" data-dica="inversa: 6*5 = 10*x → x = 30/10 = 3h">ver dica</button>
+            </div>
+            <div class="ex-item">
+                <span>🚗</span> Um carro a 80 km/h faz um trajeto em 3h. Se aumentar para 100 km/h, quanto tempo?
+                <button class="praticar-btn" data-dica="inversa: 80*3 = 100*x → x = 240/100 = 2,4 h (2h24)">ver dica</button>
+            </div>
+            <div class="ex-item">
+                <span>🍞</span> 4 padeiros fazem 120 pães em 2h. Quantos pães 7 padeiros fazem em 2h? (direta)
+                <button class="praticar-btn" data-dica="direta com padeiros: 4/7 = 120/x → x = (7*120)/4 = 210 pães">ver dica</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- RODAPÉ com informações de contato (azul bebê total) -->
+<footer>
+    <div>📐 Matemática azul bebê · regra de três direta e inversa</div>
+    <div class="contatos">
+        <a href="#">📧 matematicar@ajuda.com</a>
+        <a href="#">📞 (11) 99876-1234</a>
+        <a href="#">📷 @regra3.babyblue</a>
+        <a href="#">📍 São Paulo, BR</a>
+    </div>
+    <div style="font-size:0.95rem; margin-top:1rem;">&copy; 2025 — sempre aprendendo proporções</div>
+</footer>
+
+<!-- javascript da calculadora e interação com dicas -->
+<script>
+    (function() {
+        // elementos da calculadora
+        const A = document.getElementById('valA');
+        const B = document.getElementById('valB');
+        const C = document.getElementById('valC');
+        const X = document.getElementById('valX');
+        const output = document.getElementById('calcOutput');
+
+        function exibir(valor) {
+            if (typeof valor === 'number' && !isNaN(valor)) {
+                X.value = valor.toFixed(4).replace(/\.?0+$/, ''); // remove zeros desnecessários
+                output.textContent = X.value;
+            } else {
+                X.value = 'erro';
+                output.textContent = '???';
+            }
+        }
+
+        // direta: A/B = C/X  =>  X = (B * C) / A
+        document.getElementById('calcularDireta').addEventListener('click', function() {
+            const a = parseFloat(A.value);
+            const b = parseFloat(B.value);
+            const c = parseFloat(C.value);
+            if (isNaN(a) || isNaN(b) || isNaN(c) || a === 0) {
+                exibir(NaN);
+                return;
+            }
+            const x = (b * c) / a;
+            exibir(x);
+        });
+
+        // inversa: A * B = C * X  =>  X = (A * B) / C
+        document.getElementById('calcularInversa').addEventListener('click', function() {
+            const a = parseFloat(A.value);
+            const b = parseFloat(B.value);
+            const c = parseFloat(C.value);
+            if (isNaN(a) || isNaN(b) || isNaN(c) || c === 0) {
+                exibir(NaN);
+                return;
+            }
+            const x = (a * b) / c;
+            exibir(x);
+        });
+
+        document.getElementById('limparCalc').addEventListener('click', function() {
+            A.value = '';
+            B.value = '';
+            C.value = '';
+            X.value = '';
+            output.textContent = '—';
+        });
+
+        // Botões "ver dica" das atividades
+        const botoesDica = document.querySelectorAll('.praticar-btn');
+        botoesDica.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const dica = this.getAttribute('data-dica');
+                alert('💡 ' + dica);
+            });
+        });
+
+        // Barra de pesquisa - só um feedback amigável
+        const searchBtn = document.querySelector('.search-area button');
+        const searchInput = document.querySelector('.search-area input');
+        searchBtn.addEventListener('click', function() {
+            const termo = searchInput.value.trim();
+            if (termo !== '') {
+                alert('Você pesquisou por "' + termo + '"\n(Simulação de busca - site estático)');
+            } else {
+                alert('Digite algo para pesquisar.');
+            }
+        });
+    })();
+</script>
+
+<!-- pequeno ajuste para input readonly não atrapalhar -->
+</body>
+</html>
