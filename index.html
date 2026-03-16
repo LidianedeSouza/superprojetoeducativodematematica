@@ -446,6 +446,7 @@
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
             line-height: 1.6;
+            white-space: pre-line;
         }
         .fechar-modal {
             background: #ffb381;
@@ -590,7 +591,7 @@
         <h2>📌 Atividades para praticar</h2>
         <div class="lista-ex" id="listaAtividades">
             <!-- Atividade 1 -->
-            <div class="ex-item" data-resposta="5" data-dica="direta: 3/45 = x/75 → x = (75*3)/45 = 5 kg">
+            <div class="ex-item" data-resposta="5" data-tipo="direta" data-dica="direta: 3/45 = x/75 → x = (75*3)/45 = 5 kg">
                 <span>📏</span>
                 <div class="conteudo-atividade">3 kg de farinha → 45 pães. Kg para 75 pães?</div>
                 <div class="resposta-container" style="display: none;">
@@ -602,7 +603,7 @@
                 <button class="praticar-btn">ver dica</button>
             </div>
             <!-- Atividade 2 -->
-            <div class="ex-item" data-resposta="3" data-dica="inversa: 6*5 = 10*x → x = 30/10 = 3h">
+            <div class="ex-item" data-resposta="3" data-tipo="inversa" data-dica="inversa: 6*5 = 10*x → x = 30/10 = 3h">
                 <span>⏱️</span>
                 <div class="conteudo-atividade">6 máquinas → 1000 peças em 5h. 10 máquinas em ?h</div>
                 <div class="resposta-container" style="display: none;">
@@ -614,7 +615,7 @@
                 <button class="praticar-btn">ver dica</button>
             </div>
             <!-- Atividade 3 -->
-            <div class="ex-item" data-resposta="2.4" data-dica="inversa: 80*3 = 100*x → x = 240/100 = 2,4 h (2h24)">
+            <div class="ex-item" data-resposta="2.4" data-tipo="inversa" data-dica="inversa: 80*3 = 100*x → x = 240/100 = 2,4 h (2h24)">
                 <span>🚗</span>
                 <div class="conteudo-atividade">80 km/h → 3h. 100 km/h → ?h</div>
                 <div class="resposta-container" style="display: none;">
@@ -626,7 +627,7 @@
                 <button class="praticar-btn">ver dica</button>
             </div>
             <!-- Atividade 4 -->
-            <div class="ex-item" data-resposta="210" data-dica="direta: 4/7 = 120/x → x = (7*120)/4 = 210 pães">
+            <div class="ex-item" data-resposta="210" data-tipo="direta" data-dica="direta: 4/7 = 120/x → x = (7*120)/4 = 210 pães">
                 <span>🍞</span>
                 <div class="conteudo-atividade">4 padeiros → 120 pães (2h). 7 padeiros → ? pães</div>
                 <div class="resposta-container" style="display: none;">
@@ -653,7 +654,7 @@
     <div style="font-size:0.95rem; margin-top:1rem;">&copy; 2025 — sempre aprendendo proporções</div>
 </footer>
 
-<!-- MODAL PARA INFORMAÇÕES DO MENU -->
+<!-- MODAL PARA INFORMAÇÕES DO MENU E SOLUÇÕES -->
 <div id="menuModal" class="modal">
     <div class="modal-content">
         <h2 id="modalTitulo">Título</h2>
@@ -739,6 +740,10 @@
 
         // ========== ATIVIDADES INTERATIVAS ==========
         const atividades = document.querySelectorAll('.ex-item');
+        const modal = document.getElementById('menuModal');
+        const modalTitulo = document.getElementById('modalTitulo');
+        const modalTexto = document.getElementById('modalTexto');
+        const fecharModal = document.getElementById('fecharModal');
         
         atividades.forEach(item => {
             const praticarBtn = item.querySelector('.praticar-btn');
@@ -748,12 +753,13 @@
             const solucaoBtn = item.querySelector('.solucao-btn');
             const feedback = item.querySelector('.feedback');
             const respostaCorreta = parseFloat(item.dataset.resposta);
+            const tipo = item.dataset.tipo; // 'direta' ou 'inversa'
             const dica = item.dataset.dica;
 
             // Botão "ver dica" - libera a atividade
             praticarBtn.addEventListener('click', function() {
                 respostaContainer.style.display = 'flex';
-                praticarBtn.style.display = 'none'; // Esconde o botão ver dica
+                praticarBtn.style.display = 'none';
                 feedback.textContent = '';
                 respostaInput.value = '';
             });
@@ -769,7 +775,6 @@
                         return;
                     }
 
-                    // Tolerância para decimais
                     if (Math.abs(valorUsuario - respostaCorreta) < 0.01) {
                         feedback.textContent = '✓ Correto!';
                         feedback.className = 'feedback certo';
@@ -780,20 +785,51 @@
                 });
             }
 
-            // Botão solução
+            // Botão solução - agora mostra explicação detalhada com dicas
             if (solucaoBtn) {
                 solucaoBtn.addEventListener('click', function() {
-                    alert(`💡 Dica: ${dica}`);
+                    const valorUsuario = respostaInput.value ? parseFloat(respostaInput.value) : null;
+                    const errou = valorUsuario !== null && Math.abs(valorUsuario - respostaCorreta) >= 0.01;
+                    
+                    let mensagem = '';
+                    let dicasExtras = '';
+                    
+                    // Dicas específicas baseadas no tipo de problema
+                    if (tipo === 'direta') {
+                        dicasExtras = '\n\n📌 DICAS PARA REGRA DE TRÊS DIRETA:\n' +
+                                    '• As grandezas aumentam ou diminuem juntas\n' +
+                                    '• Monte a proporção: A/B = C/X\n' +
+                                    '• Multiplique cruzado: A·X = B·C\n' +
+                                    '• Isole X: X = (B·C)/A\n' +
+                                    '• Exemplo: Se 3kg fazem 45 pães, então 5kg fazem 75 pães (3/5 = 45/75)';
+                    } else {
+                        dicasExtras = '\n\n📌 DICAS PARA REGRA DE TRÊS INVERSA:\n' +
+                                    '• Quando uma grandeza aumenta, a outra diminui\n' +
+                                    '• O produto é constante: A·B = C·X\n' +
+                                    '• Isole X: X = (A·B)/C\n' +
+                                    '• Exemplo: Se 6 máquinas levam 5h, 10 máquinas levam 3h (6·5 = 10·3)';
+                    }
+                    
+                    if (errou) {
+                        mensagem = `❌ Sua resposta: ${valorUsuario}\n` +
+                                  `✅ Resposta correta: ${respostaCorreta}\n\n` +
+                                  `📝 Resolução passo a passo:\n${dica}` +
+                                  dicasExtras +
+                                  '\n\n💪 Na próxima você acerta! Lembre-se de identificar se é direta ou inversa antes de calcular.';
+                    } else {
+                        mensagem = `✅ Resposta correta: ${respostaCorreta}\n\n` +
+                                  `📝 Resolução:\n${dica}` +
+                                  dicasExtras;
+                    }
+                    
+                    modalTitulo.textContent = `🔍 Solução - ${tipo === 'direta' ? 'Regra Direta' : 'Regra Inversa'}`;
+                    modalTexto.textContent = mensagem;
+                    modal.style.display = 'flex';
                 });
             }
         });
 
         // ========== MENU FUNCIONAL COM MODAL ==========
-        const modal = document.getElementById('menuModal');
-        const modalTitulo = document.getElementById('modalTitulo');
-        const modalTexto = document.getElementById('modalTexto');
-        const fecharModal = document.getElementById('fecharModal');
-
         const menuItens = {
             'inicio': {
                 titulo: '🏠 Página Inicial',
@@ -817,7 +853,7 @@
             },
             'atividades': {
                 titulo: '📝 Atividades Práticas',
-                texto: 'Clique em "ver dica" em qualquer atividade para liberar o campo de resposta. Depois, digite sua resposta e clique em "verificar" para saber se acertou. Use o botão "solução" para ver a resolução completa.'
+                texto: 'Clique em "ver dica" em qualquer atividade para liberar o campo de resposta. Depois, digite sua resposta e clique em "verificar" para saber se acertou. Se errar, clique em "solução" para ver a resolução completa e dicas para melhorar!'
             },
             'contato': {
                 titulo: '📞 Contato',
@@ -855,7 +891,6 @@
         function responderPergunta(pergunta) {
             pergunta = pergunta.toLowerCase();
             
-            // Mapeamento de palavras-chave para seções
             if (pergunta.includes('direta') || pergunta.includes('diretamente') || pergunta.includes('diretas')) {
                 return menuItens['direta'];
             }
@@ -878,11 +913,10 @@
                 return menuItens['inicio'];
             }
             else if (pergunta.includes('como fazer') || pergunta.includes('como calcular') || pergunta.includes('exemplo')) {
-                // Se perguntar como fazer, mostra dicas
                 return menuItens['dicas'];
             }
             
-            return null; // Não encontrou
+            return null;
         }
 
         searchBtn.addEventListener('click', function() {
@@ -900,14 +934,12 @@
                 modalTexto.textContent = resposta.texto;
                 modal.style.display = 'flex';
             } else {
-                // Se não encontrar uma correspondência exata, mostra uma mensagem amigável
                 modalTitulo.textContent = '🤔 Dúvida sobre regra de três';
                 modalTexto.textContent = `Sua pergunta: "${pergunta}"\n\nNão encontrei uma resposta específica, mas aqui vai uma dica geral: Na regra de três, primeiro identifique se as grandezas são direta ou inversamente proporcionais. Depois, organize os dados e aplique a fórmula correta. Use as seções do menu para aprender mais!`;
                 modal.style.display = 'flex';
             }
         });
 
-        // Pesquisar com Enter
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 searchBtn.click();
